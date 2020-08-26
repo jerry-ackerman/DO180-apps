@@ -1,0 +1,98 @@
+    1  git
+    2  sudo yum install git
+    3  logout
+    4  lab-configure
+    5  vim /usr/local/etc/ocp4.config
+    6  vim ~/.bashrc
+    7  vim /usr/local/etc/ocp4.config
+    8  printenv
+    9  pwd
+   10  . .bashrc
+   11  RHT_OCP4_MASTER_API=https://api.ocp-na2.prod.nextcle.com:6443
+   12  RHT_OCP4_WILDCARD_DOMAIN=apps.ocp-na2.prod.nextcle.com
+   13  RHT_OCP4_CLUSTER_ID=57c48a8d-c97b-433f-86f2-c6c80c516bed
+   14  RHT_OCP4_NEXUS_SERVER=nexus-common.apps.ocp-na2.prod.nextcle.com
+   15  RHT_OCP4_DEV_USER=jerry-ackerman
+   16  RHT_OCP4_DEV_PASSWORD=cf8da547200a42dba612
+   17  RHT_OCP4_GITHUB_USER=jerry-ackerman
+   18  RHT_OCP4_QUAY_USER=jerry_ackerman
+   19   mysql -uuser1 -pmypa55 --protocol tcp -h localhost
+   20  RHT_OCP4_MASTER_API=https://api.ocp-na2.prod.nextcle.com:6443
+   21  RHT_OCP4_WILDCARD_DOMAIN=apps.ocp-na2.prod.nextcle.com
+   22  RHT_OCP4_CLUSTER_ID=57c48a8d-c97b-433f-86f2-c6c80c516bed
+   23  RHT_OCP4_NEXUS_SERVER=nexus-common.apps.ocp-na2.prod.nextcle.com
+   24  RHT_OCP4_DEV_USER=jerry-ackerman
+   25  RHT_OCP4_DEV_PASSWORD=cf8da547200a42dba612
+   26  RHT_OCP4_GITHUB_USER=jerry-ackerman
+   27  RHT_OCP4_QUAY_USER=jerry_ackerman
+   28  oc describe svc/php-helloworld
+   29   oc expose svc/php-helloworld
+   30   curl php-helloworld-${RHT_OCP4_DEV_USER}-route.
+   31   curl php-helloworld-${RHT_OCP4_DEV_USER}-route.${RHT_OCP4_WILDCARD_DOMAIN}
+   32  oc delete  route/php-helloworld
+   33   oc expose svc/php-helloworld  --name=${RHT_OCP4_DEV_USER}-xyz
+   34  oc describe route
+   35  curl jerry-ackerman-xyz-jerry-ackerman-route.apps.ocp-na2.prod.nextcle.com
+   36  lab openshift-routes finish
+   37  lab openshift-s2i start
+   38  mkdir /home/student/DO180-apps
+   39  lab openshift-s2i start
+   40  git clone https://github.com/jerry-ackerman/DO180-apps.git
+   41  lab openshift-s2i start
+   42  cd DO180/labs/openshift-s2i/
+   43  tre s2i-php-container/
+   44  treE s2i-php-container/
+   45  tree s2i-php-container/
+   46  pwd
+   47  ls
+   48  vim s2i-php-container/5.6/s2i/bin/assemble 
+   49  vim s2i-php-container/5.6/s2i/bin/run 
+   50  vim s2i-php-container/5.6/Dockerfile
+   51  pwd
+   52  cd ../../..
+   53  ls
+   54  cd DO180-apps/
+   55  ls
+   56  pwd
+   57  git checkout master
+   58  pwd
+   59  history
+   60  git checkout -b s2i
+   61  pwd
+   62  ls
+   63  pwd
+   64  git push -u origin s2i
+   65  pwd
+   66  ls
+   67  vim php-helloworld/index.php 
+   68  . ~/.bashrc
+   69   oc login -u ${RHT_OCP4_DEV_USER} -p  ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API}
+   70  oc new-project  jerry-ackerman-s2i
+   71   oc new-app -i php:7.1 --name=php-helloworld  https://github.com/${RHT_OCP4_GITHUB_USER}/DO180-apps#s2i  --context-dir php-helloworld
+   72  oc status
+   73  oc get pods
+   74  oc logs --all-containers  -f php-helloworld-1-build
+   75  oc get pods
+   76  oc describe php-helloworld-1-build
+   77  oc describe dc/php-helloworld-1-build
+   78  oc describe dc/php-helloworld
+   79  oc expose service php-helloworld --name jerry-ackerman-helloworld
+   80  oc get route -o jsonpath='{..spec.host}{"\n"}'
+   81  oc get route 
+   82  curl -s  ${RHT_OCP4_DEV_USER}-helloworld-${RHT_OCP4_DEV_USER}-s2i. ${RHT_OCP4_WILDCARD_DOMAIN}
+   83  curl -s jerry-ackerman-helloworld-jerry-ackerman-s2i.apps.ocp-na2.prod.nextcle.com
+   84  pwd
+   85  vim php-helloworld/index.php 
+   86  history
+   87  pwd
+   88  git add .
+   89  git commit -m 'Changed index page contents.'
+   90  git push origin s2i
+   91  pwd
+   92  ls
+   93  cd php-helloworld/
+   94  ls
+   95  oc start-build php-helloworld
+   96  oc logs php-helloworld-2-build  -f 
+   97  oc get pods -w
+   98  history > file2
